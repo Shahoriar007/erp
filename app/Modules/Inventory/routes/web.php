@@ -12,6 +12,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/get-seller', [App\Modules\Inventory\Http\Controllers\sales\SellerController::class, 'getSeller']); // ajax request
     Route::post('/delete-seller', [App\Modules\Inventory\Http\Controllers\sales\SellerController::class, 'deleteSeller']); // ajax request
 
+    // route for product
+    Route::get('/product', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'product'])->name('product');
+    Route::get('/product-add', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'productAdd'])->name('product-add');
+    Route::get('/product-edit/{id}', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'productEdit'])->name('product-edit');
+    Route::post('/submit-product', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'submitProduct'])->name('submit-product');
+    Route::post('/update-product', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'updateProduct'])->name('update-product');
+    Route::post('/get-product', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'getProduct']); // ajax request
+    Route::post('/delete-product', [App\Modules\Inventory\Http\Controllers\product\ProductController::class, 'deleteProduct']); // ajax request
+
+    // routes for purchase
+    Route::get('/purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'purchase'])->name('purchase');
+    Route::get('/purchase-add', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'purchaseAdd'])->name('purchase-add');
+    Route::get('/purchase-edit/{id}', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'purchaseEdit'])->name('purchase-edit');
+    Route::post('/submit-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'submitPurchase'])->name('submit-purchase');
+    Route::post('/get-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'getPurchase']); // ajax request
+
     // route for coustomer
     Route::get('/customer', [App\Modules\Inventory\Http\Controllers\customer\CustomerController::class, 'customer'])->name('customer');
     Route::get('/customer-add', [App\Modules\Inventory\Http\Controllers\customer\CustomerController::class, 'customerAdd'])->name('customer-add');
