@@ -37,38 +37,53 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="name">Name <span class="text-red">*</span></label>
-                                                <input type="text" value="{{ $data->name }}" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                                                    placeholder="Name">
-                                                @error('name')
-                                                    <div class="invalid-feedback mt-1 mb-1">{{ $message }}</div>
+                                                <label class="form-label" for="name">Product Name <span class="text-red">*</span></label>
+                                                <select class="form-control select2-show-search form-select"
+                                                    data-placeholder="{{ $data->product_id }}" name="product_id" id="product_id" >
+                                                    <option label="{{ $data->product_id }}" value="{{ $data->product_id }}"></option>
+                                                    @foreach ($products as $product)
+                                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                                    @endforeach
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Purchase Date <span class="text-red">*</span></label>
+                                                <input type="date" value="{{ $data->purchase_date }}"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    id="purchase_date" name="purchase_date" placeholder="{{ $data->purchase_date }}">
+                                                @error('purchase_date')
+                                                <div class="text-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label">Price <span class="text-red">*</span></label>
-                                                <input type="text" value="{{ $data->price }}" class="form-control @error('name') is-invalid @enderror" id="price" name="price"
-                                                    placeholder="Price">
-                                                @error('price')
-                                                    <div class="text-danger mt-1 mb-1">{{ $message }}</div>
-                                                @enderror
+                                                <label class="form-label">Seller Name <span class="text-red">*</span></label>
+                                                <select class="form-control select2-show-search form-select"
+                                                    data-placeholder="{{ $data->seller_id }}" name="seller_id" id="seller_id" >
+                                                    <option label="{{ $data->seller_id }}" value="{{ $data->seller_id }}"></option>
+                                                    @foreach ($sellers as $seller)
+                                                    <option value="{{ $seller->id }}">{{ $seller->name }}</option>
+                                                    @endforeach
                                             </div>
                                         </div>
+
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label">Category <span class="text-red">*</span></label>
-                                                <input type="text" value="{{ $data->category }}" class="form-control @error('name') is-invalid @enderror" id="category" name="category"
-                                                    placeholder="Category">
-                                                <input type="hidden" value="{{ $data->id }}" class="form-control" name="id">
-                                                @error('category')
+                                                <label class="form-label">Purchase Quantity <span class="text-red">*</span></label>
+                                                <input type="text" value="{{ $data->quantity }}" class="form-control @error('name') is-invalid @enderror" id="quantity" name="quantity"
+                                                    placeholder="Quantity">
+                                                    <input type="hidden" value="{{ $data->id }}" class="form-control" name="id">
+                                                @error('quantity')
                                                     <div class="text-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-
-
 
                                     </div>
                                     <div class="float-left" style="float: left;">

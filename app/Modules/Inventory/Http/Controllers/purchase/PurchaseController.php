@@ -31,8 +31,11 @@ class PurchaseController extends Controller
 
     public function purchaseEdit($id)
     {
+        $products = Product::orderBy('id', 'desc')->select('id', 'name')->get();
+        $sellers = Seller::orderBy('id', 'desc')->select('id', 'name')->get();
+
         $data = Purchase::where('id', decrypt($id))->first();
-        return view('Inventory::products.purchase.edit-purchase', compact('data'));
+        return view('Inventory::products.purchase.edit-purchase', compact('products', 'sellers','data'));
     }
 
     public function submitPurchase(Request $request)
@@ -51,18 +54,20 @@ class PurchaseController extends Controller
         return redirect()->route('purchase')->with('Successfully added');
     }
 
-    public function updateProduct(Request $request)
+    public function updatePurchase(Request $request)
     {
+
         $request->validate(
             [
-                'name' => 'required',
-                'price' => 'required',
-                'category' => 'required',
+                'product_id' => 'required',
+                'seller_id' => 'required',
+                'purchase_date' => 'required',
+                'quantity' => 'required',
             ]
         );
-        Purchase::Productupdated($request);
+        Purchase::Purchaseupdated($request);
 
-        return redirect()->route('product')->with('Successfully Updated');
+        return redirect()->route('purchase')->with('Successfully Updated');
     }
 
     public function getPurchase(Request $request)
