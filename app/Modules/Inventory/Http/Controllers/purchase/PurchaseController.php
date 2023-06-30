@@ -31,21 +31,23 @@ class PurchaseController extends Controller
 
     public function purchaseEdit($id)
     {
-        $data = Product::where('id', decrypt($id))->first();
-        return view('Inventory::products.product.edit-product', compact('data'));
+        $data = Purchase::where('id', decrypt($id))->first();
+        return view('Inventory::products.purchase.edit-purchase', compact('data'));
     }
 
-    public function submitProduct(Request $request)
+    public function submitPurchase(Request $request)
     {
         $request->validate(
             [
+                'product_id' => 'required',
+                'seller_id' => 'required',
                 'purchase_date' => 'required',
                 'quantity' => 'required',
             ]
         );
         Purchase::Purchaseadd($request);
 
-        
+
         return redirect()->route('purchase')->with('Successfully added');
     }
 
@@ -58,7 +60,7 @@ class PurchaseController extends Controller
                 'category' => 'required',
             ]
         );
-        Product::Productupdated($request);
+        Purchase::Productupdated($request);
 
         return redirect()->route('product')->with('Successfully Updated');
     }
@@ -79,7 +81,13 @@ class PurchaseController extends Controller
                     $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
                     $btn = '';
 
-
+                    $btn .= '<a href="' . route('purchase-edit', ['id' => encrypt($list->id)]) . '"
+                    <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                    <span class="fe fe-edit"> </span>
+                    </button></a>
+                    <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deletePurchase(this.id,event)">
+                        <span class="fe fe-trash-2"> </span>
+                    </button>';
 
                     if ($checkAdmin) {
                         $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
@@ -116,9 +124,9 @@ class PurchaseController extends Controller
         }
     }
 
-    public function deleteProduct(Request $request)
+    public function deletePurchase(Request $request)
     {
-        Product::deleteProduct($request);
+        Purchase::deletePurchase($request);
         return back()->with('success', 'Successfully deleted');
     }
 

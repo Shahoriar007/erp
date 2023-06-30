@@ -2,7 +2,7 @@
 
 // Admin Route
 Route::group(['middleware' => 'auth'], function () {
-    
+
     // route for seller means product seles man
     Route::get('/seller', [App\Modules\Inventory\Http\Controllers\sales\SellerController::class, 'seller'])->name('seller');
     Route::get('/seller-add', [App\Modules\Inventory\Http\Controllers\sales\SellerController::class, 'sellerAdd'])->name('seller-add');
@@ -26,7 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/purchase-add', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'purchaseAdd'])->name('purchase-add');
     Route::get('/purchase-edit/{id}', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'purchaseEdit'])->name('purchase-edit');
     Route::post('/submit-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'submitPurchase'])->name('submit-purchase');
+    Route::post('/update-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'updatePurchase'])->name('update-purchase');
     Route::post('/get-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'getPurchase']); // ajax request
+    Route::post('/delete-purchase', [App\Modules\Inventory\Http\Controllers\purchase\PurchaseController::class, 'deletePurchase']); // ajax request
 
     // route for coustomer
     Route::get('/customer', [App\Modules\Inventory\Http\Controllers\customer\CustomerController::class, 'customer'])->name('customer');
@@ -46,5 +48,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-sell', [App\Modules\Inventory\Http\Controllers\sell\SellController::class, 'updateSell'])->name('update-sell');
     Route::post('/get-sell', [App\Modules\Inventory\Http\Controllers\sell\SellController::class, 'getSell']); // ajax request
     Route::post('/delete-sell', [App\Modules\Inventory\Http\Controllers\sell\SellController::class, 'deleteSell']); // ajax request
-    
+
 });

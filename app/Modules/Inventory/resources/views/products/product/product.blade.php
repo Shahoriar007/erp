@@ -32,10 +32,6 @@
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
                                         Product</button>
                                 </a>
-                                <a href="{{ route('product-edit', ['id' => encrypt(1)]) }}">
-                                    <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Edit
-                                        Product</button>
-                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -124,7 +120,7 @@
                         }).then(function() {
                             location.reload();
                             $.ajax({
-                                url: "/delete-customer",
+                                url: "/delete-product",
                                 method: 'POST',
                                 data: {
                                     id: id,
@@ -141,6 +137,6 @@
                     }
                 })
             }
-           
+
         </script>
     @endsection

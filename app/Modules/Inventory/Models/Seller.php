@@ -36,6 +36,7 @@ class Seller extends Model
     {
         $id = decrypt($request->id);
         $data = Seller::find($id);
+
         if ($data) {
             $data->delete();
         }

@@ -46,18 +46,8 @@
                                                 @endforeach
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="form-label"> Seller Name</label>
-                                            <select class="form-control select2-show-search form-select"
-                                                data-placeholder="Choose one" name="seller_id" id="seller_id">
-                                                <option label="Choose one"></option>
-                                                @foreach ($sellers as $seller)
-                                                <option value="{{ $seller->id }}">{{ $seller->name }}</option>
-                                                @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+
+                                    <div class="col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label class="form-label"> Purchase Date <span
                                                     class="text-red">*</span></label>
@@ -69,6 +59,23 @@
                                             @enderror
                                         </div>
                                     </div>
+
+
+
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="form-label"> Seller Name</label>
+                                            <select class="form-control select2-show-search form-select"
+                                                data-placeholder="Choose one" name="seller_id" id="seller_id">
+                                                <option label="Choose one"></option>
+                                                @foreach ($sellers as $seller)
+                                                <option value="{{ $seller->id }}">{{ $seller->name }}</option>
+                                                @endforeach
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label"> Purchase Quantity <span
@@ -82,7 +89,7 @@
                                         </div>
                                     </div>
 
-
+                              
 
                                 </div>
                                 <div class="float-left" style="float: left;">

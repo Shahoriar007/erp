@@ -32,10 +32,7 @@
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
                                     Purchase</button>
                                 </a>
-                                <a href="{{ route('purchase-edit', ['id' => encrypt(1)]) }}">
-                                    <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Edit
-                                    Purchase</button>
-                                </a>
+
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -108,7 +105,7 @@
                 });
             });
 
-            function deleteProduct(id, e) {
+            function deletePurchase(id, e) {
                 e.preventDefault();
                 swal.fire({
                     title: "Are you sure?",
@@ -129,7 +126,7 @@
                         }).then(function() {
                             location.reload();
                             $.ajax({
-                                url: "/delete-customer",
+                                url: "/delete-purchase",
                                 method: 'POST',
                                 data: {
                                     id: id,
@@ -146,6 +143,6 @@
                     }
                 })
             }
-           
+
         </script>
     @endsection
