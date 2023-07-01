@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 <label class="form-label"> Seller Name</label>
                                                 <select class="form-control select2-show-search form-select"
-                                                    data-placeholder="Choose one">
+                                                    data-placeholder="Choose one" name="seller_id" id="seller_id">
                                                     <option label="Choose one"></option>
                                                     @foreach ($sellers as $seller)
                                                         <option value="{{ $seller->id }}">{{ $seller->name }}</option>
@@ -51,7 +51,7 @@
                                             <div class="form-group">
                                                 <label class="form-label"> Customer Name</label>
                                                 <select class="form-control select2-show-search form-select"
-                                                    data-placeholder="Choose one">
+                                                    data-placeholder="Choose one" name="custormer_id" id="custormer_id">
                                                     <option label="Choose one"></option>
                                                     @foreach ($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -63,12 +63,12 @@
                                             <div class="form-group">
                                                 <label class="form-label"> Product Name</label>
                                                 <select class="form-control select2-show-search form-select"
-                                                    data-placeholder="Choose one">
+                                                    data-placeholder="Choose one" name="product_id" id="product_id">
                                                     <option label="Choose one"></option>
-                                                    <option value="1">Product 1</option>
-                                                    <option value="2">Product 2</option>
-                                                    <option value="3">Product 3</option>
-                                                   
+                                                    @foreach ($products as $product)
+                                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                                    @endforeach
+
                                                 </select>
                                             </div>
                                         </div>

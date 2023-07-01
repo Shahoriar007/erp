@@ -39,8 +39,8 @@
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-                                                <th class="border-bottom-0">Seller Name</th>
                                                 <th class="border-bottom-0">Customer name</th>
+                                                <th class="border-bottom-0">Seller Name</th>
                                                 <th class="border-bottom-0">Product Name</th>
                                                 <th class="border-bottom-0">Selling date</th>
                                                 <th class="border-bottom-0">Selling Quantity</th>
@@ -78,16 +78,16 @@
                         }
                     },
                     columns: [{
-                            data: 'seller_name',
-                            name: 'seller_name'
+                            data: 'custormer_id',
+                            name: 'custormer_id'
                         },
                         {
-                            data: 'customer_name',
-                            name: 'customer_name'
+                            data: 'seller_id',
+                            name: 'seller_id'
                         },
                         {
-                            data: 'product_name',
-                            name: 'product_name'
+                            data: 'product_id',
+                            name: 'product_id'
                         },
                         {
                             data: 'selling_date',
