@@ -109,7 +109,7 @@
                 });
             });
 
-            function deleteSeller(id, e) {
+            function deleteSell(id, e) {
                 e.preventDefault();
                 swal.fire({
                     title: "Are you sure?",
@@ -130,7 +130,7 @@
                         }).then(function() {
                             location.reload();
                             $.ajax({
-                                url: "/delete-seller",
+                                url: "/delete-sell",
                                 method: 'POST',
                                 data: {
                                     id: id,

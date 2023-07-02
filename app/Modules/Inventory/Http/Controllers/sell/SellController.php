@@ -30,6 +30,16 @@ class SellController extends Controller
         return view('Inventory::sales.sell.add-sell', compact('sellers', 'customers', 'products'));
     }
 
+    public function sellEdit($id)
+    {
+        $sellers = Seller::orderBy('id', 'desc')->select('id', 'name')->get();
+        $customers = Customer::orderBy('id', 'desc')->select('id', 'name')->get();
+        $products = Product::orderBy('id', 'desc')->select('id', 'name')->get();
+
+        $data = Sell::where('id', decrypt($id))->first();
+        return view('Inventory::products.purchase.edit-purchase', compact('products', 'sellers','customers','data'));
+    }
+
     public function submitsell(Request $request)
     {
 
@@ -45,6 +55,22 @@ class SellController extends Controller
         Sell::Selladd($request);
 
         return redirect()->route('sell')->with('Successfully added');
+    }
+    public function updateSell(Request $request)
+    {
+
+        $request->validate(
+            [
+                'custormer_id' => 'required|exists:customers,id',
+                'seller_id' => 'required|exists:sellers,id',
+                'product_id' => 'required|exists:products,id',
+                'selling_date' => 'required',
+                'selling_quantity' => 'required',
+            ]
+        );
+        Sell::Sellupdated($request);
+
+        return redirect()->route('sell')->with('Successfully Updated');
     }
 
     public function getSell(Request $request)
@@ -62,11 +88,11 @@ class SellController extends Controller
                     $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
                     $btn = '';
 
-                    $btn .= '<a href="' . route('customer-edit', ['id' => encrypt($list->id)]) . '"
+                    $btn .= '<a href="' . route('sell-edit', ['id' => encrypt($list->id)]) . '"
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSell(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
 
@@ -104,5 +130,11 @@ class SellController extends Controller
             Session::flash('error', CommonFunction::showErrorPublic($e->getMessage()) . '[UC-1001]');
             return Redirect::back();
         }
+    }
+
+    public function deleteSell(Request $request)
+    {
+        Sell::deleteSell($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }
